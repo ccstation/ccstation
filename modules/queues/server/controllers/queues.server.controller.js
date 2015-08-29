@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Queue = mongoose.model('Queue'),
+  Song = mongoose.model('Song'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -14,6 +15,9 @@ var path = require('path'),
 exports.create = function (req, res) {
   var queue = new Queue(req.body);
   queue.user = req.user;
+
+  console.log(queue);
+  console.log(req.songs);
 
   queue.save(function (err) {
     if (err) {
@@ -40,7 +44,10 @@ exports.update = function (req, res) {
   var queue = req.queue;
 
   queue.title = req.body.title;
-  queue.content = req.body.content;
+  queue.description = req.body.description;
+
+  console.log(queue);
+  console.log(req.songs);
 
   queue.save(function (err) {
     if (err) {
@@ -74,7 +81,7 @@ exports.delete = function (req, res) {
  * List of Queues
  */
 exports.list = function (req, res) {
-  Queue.find().sort('-created').populate('user', 'displayName').exec(function (err, queues) {
+  Queue.find().sort('-created').populate('user', 'displayName').populate('songs').exec(function (err, queues) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -96,7 +103,7 @@ exports.queueByID = function (req, res, next, id) {
     });
   }
 
-  Queue.findById(id).populate('user', 'displayName').exec(function (err, queue) {
+  Queue.findById(id).populate('user', 'displayName').populate('songs').exec(function (err, queue) {
     if (err) {
       return next(err);
     } else if (!queue) {

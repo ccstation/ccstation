@@ -41,6 +41,11 @@ exports.update = function (req, res) {
 
   song.title = req.body.title;
   song.content = req.body.content;
+  song.video = req.body.video;
+  song.type = req.body.type;
+  song.titlealign = req.body.titlealign;
+  song.background = req.body.background;
+  song.sequence = req.body.sequence;
 
   song.save(function (err) {
     if (err) {
@@ -74,7 +79,7 @@ exports.delete = function (req, res) {
  * List of Songs
  */
 exports.list = function (req, res) {
-  Song.find().sort('-created').populate('user', 'displayName').exec(function (err, songs) {
+  Song.find().sort('sequence').populate('user', 'displayName').exec(function (err, songs) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

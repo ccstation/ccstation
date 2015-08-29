@@ -1,8 +1,8 @@
 'use strict';
 
 // Songs controller
-angular.module('songs').controller('SongsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Songs',
-  function ($scope, $stateParams, $location, Authentication, Songs) {
+angular.module('songs').controller('SongsController', ['$scope', '$stateParams', '$location', '$sce', 'Authentication', 'Songs',
+  function ($scope, $stateParams, $location, $sce, Authentication, Songs) {
     $scope.authentication = Authentication;
 
     // Create new Song
@@ -10,7 +10,8 @@ angular.module('songs').controller('SongsController', ['$scope', '$stateParams',
       // Create new Song object
       var song = new Songs({
         title: this.title,
-        content: this.content
+        content: this.content,
+        video: this.video
       });
 
       // Redirect after save
@@ -20,6 +21,7 @@ angular.module('songs').controller('SongsController', ['$scope', '$stateParams',
         // Clear form fields
         $scope.title = '';
         $scope.content = '';
+        $scope.video= '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -63,6 +65,7 @@ angular.module('songs').controller('SongsController', ['$scope', '$stateParams',
       $scope.song = Songs.get({
         songId: $stateParams.songId
       });
+      //$scope.videoUrl = $sce.trustAsResourceUrl($scope.song.video);
     };
   }
 ]);

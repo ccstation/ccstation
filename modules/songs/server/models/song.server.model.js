@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+
 /**
  * Song Schema
  */
@@ -13,6 +14,26 @@ var SongSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
+  },
+  type: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  titlealign: {
+    type: String,
+    default: 'left',
+    trim: true
+  },
+  background: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  sequence: {
+    type: Number,
+    default: 0,
+    trim: true
   },
   title: {
     type: String,
@@ -28,37 +49,37 @@ var SongSchema = new Schema({
   language: {
     type: String,
     default: '',
-    trim: true,
+    trim: true
   },
   year: {
     type: String,
     default: '',
-    trim: true,
+    trim: true
   },
   company: {
     type: String,
     default: '',
-    trim: true,
+    trim: true
   },
   composer: {
     type: String,
     default: '',
-    trim: true,
+    trim: true
   },
   lyricist: {
     type: String,
     default: '',
-    trim: true,
+    trim: true
   },
   video: {
     type: String,
     default: '',
-    trim: true,
+    trim: true
   },
   audio: {
     type: String,
     default: '',
-    trim: true,
+    trim: true
   },
   user: {
     type: Schema.ObjectId,

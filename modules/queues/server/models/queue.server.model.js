@@ -20,11 +20,15 @@ var QueueSchema = new Schema({
     trim: true,
     required: 'Title cannot be blank'
   },
-  content: {
+  description: {
     type: String,
     default: '',
     trim: true
   },
+  songs: [{
+    type: Schema.ObjectId,
+    ref: 'Song'
+  }],
   user: {
     type: Schema.ObjectId,
     ref: 'User'
