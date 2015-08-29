@@ -8,7 +8,8 @@
         Posted on
         <span data-ng-bind="song.created | date:'mediumDate'"></span>
         by
-        <span data-ng-bind="song.user.displayName"></span>
+        <span data-ng-bind="song.user.displayName"></span>,
+        <span data-ng-bind="song.sequence"></span>
       </small>
       <h4 class="list-group-item-heading" data-ng-bind="song.title"></h4>
       <p class="list-group-item-text" data-ng-bind="song.content"></p>
