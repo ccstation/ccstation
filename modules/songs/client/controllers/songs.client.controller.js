@@ -11,7 +11,12 @@ angular.module('songs').controller('SongsController', ['$scope', '$stateParams',
       var song = new Songs({
         title: this.title,
         content: this.content,
-        video: this.video
+        video: this.video,
+        type: this.type,
+        titlealign: this.titlealign,
+        background: this.background,
+        sequence: this.sequence,
+        top: this.top
       });
 
       // Redirect after save
@@ -22,6 +27,11 @@ angular.module('songs').controller('SongsController', ['$scope', '$stateParams',
         $scope.title = '';
         $scope.content = '';
         $scope.video= '';
+        $scope.type= '';
+        $scope.titlealign= '';
+        $scope.background= '';
+        $scope.sequence= '';
+        $scope.top= '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

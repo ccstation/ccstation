@@ -30,6 +30,11 @@ var SongSchema = new Schema({
     default: '',
     trim: true
   },
+  top: {
+    type: String,
+    default: '',
+    trim: true
+  },
   sequence: {
     type: Number,
     default: 0,

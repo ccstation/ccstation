@@ -46,6 +46,7 @@ exports.update = function (req, res) {
   song.titlealign = req.body.titlealign;
   song.background = req.body.background;
   song.sequence = req.body.sequence;
+  song.top = req.body.top;
 
   song.save(function (err) {
     if (err) {
