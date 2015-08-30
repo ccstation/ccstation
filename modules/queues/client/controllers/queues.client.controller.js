@@ -8,7 +8,7 @@ angular.module('queues').controller('QueuesController', ['$scope', '$stateParams
     $scope.addSong = function () {
       if(! $scope.songs){
         $scope.songs = [];
-      };
+      }
 
       var newsong = $scope.newSong;
 
